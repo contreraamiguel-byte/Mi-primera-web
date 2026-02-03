@@ -1,69 +1,135 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <title>Ebanistería Hermanos Contreras</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Muebles y Trabajos</title>
 
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            text-align: center;
-            background: #f5f5f5;
-            padding: 40px;
-        }
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #000;
+      color: white;
+      text-align: center;
+    }
 
-        h1 {
-            margin-bottom: 10px;
-        }
+    h1 {
+      margin: 20px 0;
+    }
 
-        .servicios {
-            font-size: 18px;
-            margin-bottom: 25px;
-        }
+    /* Galería miniaturas */
+    .galeria {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 10px;
+      padding: 15px;
+    }
 
-        .boton-galeria {
-            display: inline-block;
-            padding: 15px 25px;
-            background: green;
-            color: white;
-            text-decoration: none;
-            border-radius: 8px;
-            font-size: 18px;
-            margin: 10px;
-        }
+    .galeria img {
+      width: 100%;
+      border-radius: 10px;
+      cursor: pointer;
+    }
 
-        .boton-galeria:hover {
-            background: #27ae60;
-        }
+    /* Visor pantalla completa */
+    .visor {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.95);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 1000;
+    }
 
-        img {
-            margin-top: 25px;
-            max-width: 90%;
-            height: auto;
-        }
-    </style>
+    .visor img {
+      max-width: 100%;
+      max-height: 100%;
+    }
+
+    /* Botón cerrar */
+    .cerrar {
+      position: absolute;
+      top: 20px;
+      right: 25px;
+      font-size: 40px;
+      cursor: pointer;
+    }
+  </style>
 </head>
 
 <body>
 
-    <h1>Bienvenido</h1>
+  <h1>Mis muebles y trabajos</h1>
 
-    <p><strong>Ebanistería Hermanos Contreras</strong></p>
+  <!-- GALERÍA -->
+  <div class="galeria">
+    <img src="mueble1.jpg" onclick="abrir(0)">
+    <img src="mueble2.jpg" onclick="abrir(1)">
+    <img src="mueble3.jpg" onclick="abrir(2)">
+    <img src="mueble4.jpg" onclick="abrir(3)">
+  </div>
 
-    <p class="servicios">
-        Muebles a medida · Puertas · Closets · Cocinas
-    </p>
+  <!-- VISOR -->
+  <div class="visor" id="visor">
+    <span class="cerrar" onclick="cerrar()">✕</span>
+    <img id="imagenGrande">
+  </div>
 
-    <a href="./muebles.html" class="boton-galeria">
-        Ver muebles y trabajos
-    </a>
+  <script>
+    const fotos = [
+      "mueble1.jpg",
+      "mueble2.jpg",
+      "mueble3.jpg",
+      "mueble4.jpg"
+    ];
 
-    <a href="https://wa.me/18097276546" class="boton-galeria">
-        Escríbeme por WhatsApp
-    </a>
+    let indice = 0;
 
-    <br>
+    function abrir(i) {
+      indice = i;
+      document.getElementById("imagenGrande").src = fotos[indice];
+      document.getElementById("visor").style.display = "flex";
+    }
 
+    function cerrar() {
+      document.getElementById("visor").style.display = "none";
+    }
+
+    // Deslizar en móvil
+    let inicioX = 0;
+
+    document.getElementById("visor").addEventListener("touchstart", e => {
+      inicioX = e.touches[0].clientX;
+    });
+
+    document.getElementById("visor").addEventListener("touchend", e => {
+      let finX = e.changedTouches[0].clientX;
+      if (finX < inicioX - 50) siguiente();
+      if (finX > inicioX + 50) anterior();
+    });
+
+    // Teclado PC
+    document.addEventListener("keydown", e => {
+      if (e.key === "ArrowRight") siguiente();
+      if (e.key === "ArrowLeft") anterior();
+      if (e.key === "Escape") cerrar();
+    });
+
+    function siguiente() {
+      indice = (indice + 1) % fotos.length;
+      document.getElementById("imagenGrande").src = fotos[indice];
+    }
+
+    function anterior() {
+      indice = (indice - 1 + fotos.length) % fotos.length;
+      document.getElementById("imagenGrande").src = fotos[indice];
+    }
+  </script>
 
 </body>
 </html>
