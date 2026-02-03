@@ -1,78 +1,50 @@
-/* ====== ESTILO GENERAL ====== */
 body {
   margin: 0;
-  font-family: Arial, Helvetica, sans-serif;
-  background: red;
-  color: #fff;
+  font-family: Arial, sans-serif;
+  background: #f4f4f4;
   text-align: center;
 }
 
-/* ====== TÍTULO ====== */
 h1 {
   margin: 20px 0;
-  font-size: 32px;
 }
 
-/* ====== GALERÍA ====== */
+/* GALERÍA */
 .galeria {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  grid-template-columns: repeat(2, 1fr);
   gap: 15px;
-  padding: 20px;
-  max-width: 1100px;
-  margin: auto;
+  max-width: 800px;
+  margin: 20px auto;
+  padding: 10px;
 }
 
-/* ====== TARJETAS ====== */
-.card {
-  background: #000;
-  border-radius: 15px;
-  overflow: hidden;
-  box-shadow: 0 6px 15px rgba(0,0,0,0.6);
-  animation: aparecer 0.6s ease-in-out;
-}
-
-.card img {
+.galeria img {
   width: 100%;
   height: 200px;
   object-fit: cover;
-  display: block;
+  cursor: pointer;
+  border-radius: 8px;
+  transition: transform 0.3s;
 }
 
-.card p {
-  margin: 0;
-  padding: 10px;
-  font-weight: 600;
-  background: #000;
-  color: #fff;
+.galeria img:hover {
+  transform: scale(1.05);
 }
 
-/* ====== ANIMACIÓN ====== */
-@keyframes aparecer {
-  from {
-    opacity: 0;
-    transform: scale(0.95);
-  }
-  to {
-    opacity: 1;
-    transform: scale(1);
-  }
-}
-
-/* ====== BOTÓN WHATSAPP ====== */
-.whatsapp {
+/* VISOR */
+#visor {
+  display: none;
   position: fixed;
-  bottom: 20px;
-  right: 20px;
-  background: #25d366;
-  color: #fff;
-  padding: 12px 18px;
-  border-radius: 30px;
-  font-weight: bold;
-  text-decoration: none;
-  box-shadow: 0 5px 10px rgba(0,0,0,0.5);
+  inset: 0;
+  background: rgba(0,0,0,0.9);
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
 }
 
-.whatsapp:hover {
-  background: #1ebe5d;
+#visor img {
+  max-width: 90%;
+  max-height: 90%;
+  border-radius: 10px;
 }
