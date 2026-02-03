@@ -82,6 +82,25 @@ function prev() {
   current = (current - 1 + images.length) % images.length;
   document.getElementById("viewerImg").src = images[current];
 }
+let startX = 0;
+
+const viewer = document.getElementById("viewer");
+
+viewer.addEventListener("touchstart", (e) => {
+  startX = e.touches[0].clientX;
+});
+
+viewer.addEventListener("touchend", (e) => {
+  let endX = e.changedTouches[0].clientX;
+  let diff = startX - endX;
+
+  if (diff > 50) {
+    next(); // deslizó a la izquierda
+  } 
+  else if (diff < -50) {
+    prev(); // deslizó a la derecha
+  }
+});
 </script>
 <body>
 
