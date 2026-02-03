@@ -1,100 +1,144 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <title>Muebles y trabajos</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            text-align: center;
-            background: #f5f5f5;
-            padding: 20px;
-        }
-        img {
-            width: 90%;
-            max-width: 400px;
-            margin: 15px 0;
-            border-radius: 10px;
-        }
-        a {
-            display: inline-block;
-            margin-top: 20px;
-            text-decoration: none;
-            color: green;
-            font-size: 18px;
-        }
-        .galeria {
-  display: flex;
-  gap: 15px;
-  flex-wrap: wrap;
-}
-#viewer {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0,0,0,0.9);
-  display: none;
-  align-items: center;
-  justify-content: center;
-  z-index: 999;
-}
+  <meta charset="UTF-8">
+  <title>Muebles y Trabajos</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-#viewer img {
-  max-width: 90%;
-  max-height: 90%;
-}
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: white;
+      text-align: center;
+    }
 
-    </style>
+    h1 {
+      margin: 15px 0;
+    }
+
+    /* SLIDER */
+    .slider {
+      display: flex;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      gap: 15px;
+      padding: 15px;
+    }
+
+    .slider a {
+      flex: 0 0 auto;
+      scroll-snap-align: center;
+    }
+
+    .slider img {
+      width: 260px;
+      border-radius: 12px;
+    }
+
+    /* VISOR */
+    #viewer {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.9);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 999;
+    }
+
+    #viewer img {
+      max-width: 90%;
+      max-height: 90%;
+      border-radius: 10px;
+    }
+
+    #close {
+      position: absolute;
+      top: 15px;
+      right: 20px;
+      color: white;
+      font-size: 30px;
+      cursor: pointer;
+    }
+  </style>
 </head>
-<script>
-const images = [
-  "mueble1.jpg",
-  "mueble2.jpg",
-  "mueble3.jpg",
-  "mueble4.jpg"
-];
 
-
-</script>
 <body>
 
-    <h1>Muebles y trabajos</h1>
+<h1>Mis muebles</h1>
 
+<!-- SLIDER DE MINIATURAS -->
 <div class="slider">
-  <img src="mueble1.jpg" onclick="openViewer(0)">
-  <img src="mueble2.jpg" onclick="openViewer(1)">
-  <img src="mueble3.jpg" onclick="openViewer(2)">
-  <img src="mueble4.jpg" onclick="openViewer(3)">
+  <a href="#" onclick="openViewer(0)">
+    <img src="mueble1.jpg" alt="Mueble 1">
+  </a>
+
+  <a href="#" onclick="openViewer(1)">
+    <img src="mueble2.jpg" alt="Mueble 2">
+  </a>
+
+  <a href="#" onclick="openViewer(2)">
+    <img src="mueble3.jpg" alt="Mueble 3">
+  </a>
+
+  <a href="#" onclick="openViewer(3)">
+    <img src="mueble4.jpg" alt="Mueble 4">
+  </a>
 </div>
 
-<div id="viewer" onclick="closeViewer()">
+<!-- VISOR GRANDE -->
+<div id="viewer">
+  <span id="close" onclick="closeViewer()">✕</span>
   <img id="viewerImg">
 </div>
-    <br>
 
-    <a href="index.html">⬅ Volver al inicio</a>
 <script>
-let startX = 0;
+  const images = [
+    "mueble1.jpg",
+    "mueble2.jpg",
+    "mueble3.jpg",
+    "mueble4.jpg"
+  ];
 
-const viewer = document.getElementById("viewer");
+  let index = 0;
+  let startX = 0;
 
-viewer.addEventListener("touchstart", (e) => {
-  startX = e.touches[0].clientX;
-});
+  const viewer = document.getElementById("viewer");
+  const viewerImg = document.getElementById("viewerImg");
 
-viewer.addEventListener("touchend", (e) => {
-  let endX = e.changedTouches[0].clientX;
-  let diff = startX - endX;
-
-  if (diff > 50) {
-    next(); // deslizó a la izquierda
-  } 
-  else if (diff < -50) {
-    prev(); // deslizó a la derecha
+  function openViewer(i) {
+    index = i;
+    viewerImg.src = images[index];
+    viewer.style.display = "flex";
   }
-});
+
+  function closeViewer() {
+    viewer.style.display = "none";
+  }
+
+  function next() {
+    index = (index + 1) % images.length;
+    viewerImg.src = images[index];
+  }
+
+  function prev() {
+    index = (index - 1 + images.length) % images.length;
+    viewerImg.src = images[index];
+  }
+
+  viewer.addEventListener("touchstart", e => {
+    startX = e.touches[0].clientX;
+  });
+
+  viewer.addEventListener("touchend", e => {
+    let endX = e.changedTouches[0].clientX;
+    let diff = startX - endX;
+
+    if (diff > 50) next();
+    if (diff < -50) prev();
+  });
 </script>
+
 </body>
 </html>
