@@ -2,72 +2,64 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <title>Muebles y Trabajos</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link rel="stylesheet" href="style.css">
- 
+  <title>Galería</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
-<h1>Ebanistería Hermano Contreras</h1>
 
+<h1>Mi Galería</h1>
 
 <!-- VISOR -->
 <div id="visor">
-  <div id="close" onclick="closeViewer()">✕</div>
-  <div class="arrow left" onclick="prevImage()">❮</div>
-  <img id="imgGrande" />
-  <div class="arrow right" onclick="nextImage()">❯</div>
+  <span id="cerrar" onclick="cerrar()">✕</span>
+  <span class="flecha izquierda" onclick="anterior()">❮</span>
+  <img id="imagenGrande">
+  <span class="flecha derecha" onclick="siguiente()">❯</span>
 </div>
-  
-<img src="mueble1.jpg" onclick="openViewer(0)">
-<p>Cocina modular</p>
 
-<img src="mueble2.jpg" onclick="openViewer(1)">
-<p>Escritorio a medida</p>
-
-<img src="mueble3.jpg" onclick="openViewer(2)">
-<p>Base de cama</p>
-
-<img src="mueble4.jpg" onclick="openViewer(3)">
-<p>Mesas dominó pino</p>
-
-<img src="mueble5.jpg" onclick="openViewer(4)">
-<p>Credenza sala</p>
-
-
-
+<!-- GALERÍA -->
+<div class="galeria">
+  <img src="img1.jpg" onclick="abrir(0)">
+  <img src="img2.jpg" onclick="abrir(1)">
+  <img src="img3.jpg" onclick="abrir(2)">
+  <img src="img4.jpg" onclick="abrir(3)">
+  <img src="img5.jpg" onclick="abrir(4)">
+  <img src="img6.jpg" onclick="abrir(5)">
+  <img src="img7.jpg" onclick="abrir(6)">
+  <img src="img8.jpg" onclick="abrir(7)">
+  <img src="img9.jpg" onclick="abrir(8)">
 </div>
-    "mueble1.jpg",
-    "mueble2.jpg",
-    "mueble3.jpg",
-    "mueble4.jpg",
-    "mueble5.jpg"
+
+<script>
+  const imagenes = [
+    "img1.jpg","img2.jpg","img3.jpg",
+    "img4.jpg","img5.jpg","img6.jpg",
+    "img7.jpg","img8.jpg","img9.jpg"
   ];
-  let currentIndex = 0;
 
-  function openViewer(index) {
-    currentIndex = index;
+  let indice = 0;
+
+  function abrir(i){
+    indice = i;
+    document.getElementById("imagenGrande").src = imagenes[i];
     document.getElementById("visor").style.display = "flex";
-    document.getElementById("imgGrande").src = images[currentIndex];
   }
 
-  function closeViewer() {
+  function cerrar(){
     document.getElementById("visor").style.display = "none";
-    document.getElementById("imgGrande").src = "";
   }
 
-  function nextImage() {
-    currentIndex = (currentIndex + 1) % images.length;
-    document.getElementById("imgGrande").src = images[currentIndex];
+  function siguiente(){
+    indice = (indice + 1) % imagenes.length;
+    document.getElementById("imagenGrande").src = imagenes[indice];
   }
 
-  function prevImage() {
-    currentIndex =
-      (currentIndex - 1 + images.length) % images.length;
-    document.getElementById("imgGrande").src = images[currentIndex];
+  function anterior(){
+    indice = (indice - 1 + imagenes.length) % imagenes.length;
+    document.getElementById("imagenGrande").src = imagenes[indice];
   }
 </script>
 
 </body>
-</html
+</html>
