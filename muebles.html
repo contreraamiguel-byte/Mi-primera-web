@@ -12,67 +12,30 @@
 
 <h1>Muebles y trabajos</h1>
 
-<!-- MINIATURAS -->
+<!-- GALERÍA -->
 <div class="galeria">
-  <img src="mueble1.jpg" onclick="openViewer(0)">
-  <img src="mueble2.jpg" onclick="openViewer(1)">
-  <img src="mueble3.jpg" onclick="openViewer(2)">
-  <img src="mueble4.jpg" onclick="openViewer(3)">
+  <img src="mueble1.jpg" onclick="openViewer(this.src)">
+  <img src="mueble2.jpg" onclick="openViewer(this.src)">
+  <img src="mueble3.jpg" onclick="openViewer(this.src)">
+  <img src="mueble4.jpg" onclick="openViewer(this.src)">
 </div>
 
 <!-- VISOR -->
-<div id="viewer">
-  <div id="close" onclick="closeViewer()">✕</div>
-  <img id="viewerImg">
+<div id="visor" onclick="closeViewer()">
+  <img id="imgGrande">
 </div>
-
+</div>
 <script>
-  const images = [
-    "mueble1.jpg",
-    "mueble2.jpg",
-    "mueble3.jpg",
-    "mueble4.jpg"
-  ];
+function openViewer(src) {
+  document.getElementById("visor").style.display = "flex";
+  document.getElementById("imgGrande").src = src;
+}
 
-  let index = 0;
-  let startX = 0;
-
-  const viewer = document.getElementById("viewer");
-  const viewerImg = document.getElementById("viewerImg");
-
-  function openViewer(i) {
-    index = i;
-    viewerImg.src = images[index];
-    viewer.style.display = "flex";
-  }
-
-  function closeViewer() {
-    viewer.style.display = "none";
-  }
-
-  function next() {
-    index = (index + 1) % images.length;
-    viewerImg.src = images[index];
-  }
-
-  function prev() {
-    index = (index - 1 + images.length) % images.length;
-    viewerImg.src = images[index];
-  }
-
-  /* DESLIZAR CON EL DEDO */
-  viewer.addEventListener("touchstart", e => {
-    startX = e.touches[0].clientX;
-  });
-
-  viewer.addEventListener("touchend", e => {
-    let endX = e.changedTouches[0].clientX;
-    let diff = startX - endX;
-
-    if (diff > 50) next();
-    if (diff < -50) prev();
-  });
+function closeViewer() {
+  document.getElementById("visor").style.display = "none";
+}
 </script>
+
 
 </body>
 </html
