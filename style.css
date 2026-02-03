@@ -27,7 +27,7 @@ h1 {
 }
 
 .galeria img {
-  width: 100%;
+  width: 50%;
   height: 220px;
   object-fit: cover;
   border-radius: 12px;
