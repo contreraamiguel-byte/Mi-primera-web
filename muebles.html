@@ -9,22 +9,23 @@
 </head>
 
 <body>
+<h1>Ebanistería Hermano Contreras</h1>
 
-<h1>Muebles y trabajos</h1>
-
-<!-- GALERÍA -->
 <div class="galeria">
-  <img src="mueble1.jpg" onclick="openViewer(this.src)">
-  <img src="mueble2.jpg" onclick="openViewer(this.src)">
-  <img src="mueble3.jpg" onclick="openViewer(this.src)">
-  <img src="mueble4.jpg" onclick="openViewer(this.src)">
+  <img src="mueble1.jpg" onclick="openViewer(0)">
+  <img src="mueble2.jpg" onclick="openViewer(1)">
+  <img src="mueble3.jpg" onclick="openViewer(2)">
+  <img src="mueble4.jpg" onclick="openViewer(3)">
 </div>
 
 <!-- VISOR -->
-<div id="visor" onclick="closeViewer()">
+<div id="visor">
+  <div id="close" onclick="closeViewer()">✕</div>
+  <div class="arrow left" onclick="prevImage()">❮</div>
   <img id="imgGrande">
+  <div class="arrow right" onclick="nextImage()">❯</div>
 </div>
-</div>
+
 <script>
 function openViewer(src) {
   document.getElementById("visor").style.display = "flex";
