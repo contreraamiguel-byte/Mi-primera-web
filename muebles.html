@@ -32,34 +32,34 @@
 </div>
 
 <script>
-  const imagenes = [
-    "img1.jpg","img2.jpg","img3.jpg",
-    "img4.jpg","img5.jpg","img6.jpg",
-    "img7.jpg","img8.jpg","img9.jpg"
+  const images = [
+    "mueble1.jpg",
+    "mueble2.jpg",
+    "mueble3.jpg",
+    "mueble4.jpg"
   ];
 
-  let indice = 0;
+  let currentIndex = 0;
 
-  function abrir(i){
-    indice = i;
-    document.getElementById("imagenGrande").src = imagenes[i];
+  function openViewer(index) {
+    currentIndex = index;
     document.getElementById("visor").style.display = "flex";
+    document.getElementById("imgGrande").src = images[currentIndex];
   }
 
-  function cerrar(){
+  function closeViewer() {
     document.getElementById("visor").style.display = "none";
+    document.getElementById("imgGrande").src = "";
   }
 
-  function siguiente(){
-    indice = (indice + 1) % imagenes.length;
-    document.getElementById("imagenGrande").src = imagenes[indice];
+  function nextImage() {
+    currentIndex = (currentIndex + 1) % images.length;
+    document.getElementById("imgGrande").src = images[currentIndex];
   }
 
-  function anterior(){
-    indice = (indice - 1 + imagenes.length) % imagenes.length;
-    document.getElementById("imagenGrande").src = imagenes[indice];
+  function prevImage() {
+    currentIndex =
+      (currentIndex - 1 + images.length) % images.length;
+    document.getElementById("imgGrande").src = images[currentIndex];
   }
 </script>
-
-</body>
-</html>
