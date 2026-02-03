@@ -16,19 +16,23 @@
     h1 {
       margin: 15px 0;
     }
-.galeria {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 8px;
-  padding: 8px;
-}
 
-.galeria img {
-  width: 100%;
-  border-radius: 8px;
-}
-   
-    /* VISOR */
+    /* ===== GALERÍA (4 MINIATURAS) ===== */
+    .galeria {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 10px;
+      padding: 10px;
+    }
+
+    .galeria img {
+      width: 100%;
+      height: auto;
+      border-radius: 10px;
+      cursor: pointer;
+    }
+
+    /* ===== VISOR PANTALLA COMPLETA ===== */
     #viewer {
       position: fixed;
       inset: 0;
@@ -40,48 +44,39 @@
     }
 
     #viewer img {
-      max-width: 90%;
-      max-height: 90%;
+      max-width: 95%;
+      max-height: 95%;
       border-radius: 10px;
     }
 
+    /* ❌ MÁS GRANDE */
     #close {
       position: absolute;
-      top: 15px;
-      right: 20px;
+      top: 20px;
+      right: 25px;
+      font-size: 40px;   /* AQUÍ SE HIZO MÁS GRANDE */
       color: white;
-      font-size: 30px;
       cursor: pointer;
+      user-select: none;
     }
   </style>
 </head>
 
 <body>
 
-<h1>Mis muebles</h1>
+<h1>Muebles y trabajos</h1>
 
-<!-- SLIDER DE MINIATURAS -->
-<div class="slider">
-  <a href="#" onclick="openViewer(0)">
-    <img src="mueble1.jpg" alt="Mueble 1">
-  </a>
-
-  <a href="#" onclick="openViewer(1)">
-    <img src="mueble2.jpg" alt="Mueble 2">
-  </a>
-
-  <a href="#" onclick="openViewer(2)">
-    <img src="mueble3.jpg" alt="Mueble 3">
-  </a>
-
-  <a href="#" onclick="openViewer(3)">
-    <img src="mueble4.jpg" alt="Mueble 4">
-  </a>
+<!-- MINIATURAS -->
+<div class="galeria">
+  <img src="mueble1.jpg" onclick="openViewer(0)">
+  <img src="mueble2.jpg" onclick="openViewer(1)">
+  <img src="mueble3.jpg" onclick="openViewer(2)">
+  <img src="mueble4.jpg" onclick="openViewer(3)">
 </div>
 
-<!-- VISOR GRANDE -->
+<!-- VISOR -->
 <div id="viewer">
-  <span id="close" onclick="closeViewer()">✕</span>
+  <div id="close" onclick="closeViewer()">✕</div>
   <img id="viewerImg">
 </div>
 
@@ -119,6 +114,7 @@
     viewerImg.src = images[index];
   }
 
+  /* DESLIZAR CON EL DEDO */
   viewer.addEventListener("touchstart", e => {
     startX = e.touches[0].clientX;
   });
@@ -133,4 +129,4 @@
 </script>
 
 </body>
-</html>
+</html
