@@ -56,32 +56,26 @@ const images = [
   "mueble4.jpg"
 ];
 
-let current = 0;
 
-function openViewer(index) {
-  current = index;
-  document.getElementById("viewer").style.display = "flex";
-  document.getElementById("viewerImg").src = images[current];
-}
+</script>
+<body>
 
-function closeViewer() {
-  document.getElementById("viewer").style.display = "none";
-}
+    <h1>Muebles y trabajos</h1>
 
-document.addEventListener("keydown", (e) => {
-  if (e.key === "ArrowRight") next();
-  if (e.key === "ArrowLeft") prev();
-});
+<div class="slider">
+  <img src="mueble1.jpg" onclick="openViewer(0)">
+  <img src="mueble2.jpg" onclick="openViewer(1)">
+  <img src="mueble3.jpg" onclick="openViewer(2)">
+  <img src="mueble4.jpg" onclick="openViewer(3)">
+</div>
 
-function next() {
-  current = (current + 1) % images.length;
-  document.getElementById("viewerImg").src = images[current];
-}
+<div id="viewer" onclick="closeViewer()">
+  <img id="viewerImg">
+</div>
+    <br>
 
-function prev() {
-  current = (current - 1 + images.length) % images.length;
-  document.getElementById("viewerImg").src = images[current];
-}
+    <a href="index.html">⬅ Volver al inicio</a>
+<script>
 let startX = 0;
 
 const viewer = document.getElementById("viewer");
@@ -102,23 +96,5 @@ viewer.addEventListener("touchend", (e) => {
   }
 });
 </script>
-<body>
-
-    <h1>Muebles y trabajos</h1>
-
-<div class="slider">
-  <img src="mueble1.jpg" onclick="openViewer(0)">
-  <img src="mueble2.jpg" onclick="openViewer(1)">
-  <img src="mueble3.jpg" onclick="openViewer(2)">
-  <img src="mueble4.jpg" onclick="openViewer(3)">
-</div>
-
-<div id="viewer" onclick="closeViewer()">
-  <img id="viewerImg">
-</div>
-    <br>
-
-    <a href="index.html">⬅ Volver al inicio</a>
-
 </body>
 </html>
