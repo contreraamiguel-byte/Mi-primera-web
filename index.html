@@ -2,134 +2,90 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
+
+  <!-- SEO BÁSICO PARA GOOGLE -->
+  <title>Miguel Contreras | Muebles en madera</title>
+  <meta name="description" content="Muebles y trabajos en madera hechos por Miguel Contreras. Calidad, diseño y terminaciones profesionales.">
+  <meta name="keywords" content="muebles, madera, carpintería, muebles a medida, Miguel Contreras">
+  <meta name="author" content="Miguel Contreras">
+
+  <!-- PARA CELULARES -->
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Muebles y Trabajos</title>
+
+  <!-- GOOGLE PUEDE LEER ESTO -->
+  <meta name="robots" content="index, follow">
 
   <style>
     body {
       margin: 0;
       font-family: Arial, sans-serif;
-      background: #000;
-      color: white;
+      background-color: white;
       text-align: center;
+      padding: 20px;
     }
 
     h1 {
-      margin: 20px 0;
+      font-size: 32px;
+      margin-top: 40px;
     }
 
-    /* Galería miniaturas */
-    .galeria {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-      gap: 10px;
-      padding: 15px;
+    p {
+      font-size: 18px;
+      margin-bottom: 30px;
     }
 
-    .galeria img {
-      width: 100%;
-      border-radius: 10px;
-      cursor: pointer;
+    .boton {
+      display: inline-block;
+      padding: 15px 25px;
+      background-color: #25D366;
+      color: white;
+      text-decoration: none;
+      font-size: 20px;
+      border-radius: 8px;
+      margin: 10px;
     }
 
-    /* Visor pantalla completa */
-    .visor {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(0,0,0,0.95);
-      display: none;
-      align-items: center;
-      justify-content: center;
-      z-index: 1000;
+    .boton-galeria {
+      display: inline-block;
+      padding: 15px 25px;
+      background-color: black;
+      color: white;
+      text-decoration: none;
+      font-size: 20px;
+      border-radius: 8px;
+      margin: 10px;
     }
 
-    .visor img {
-      max-width: 100%;
-      max-height: 100%;
-    }
-
-    /* Botón cerrar */
-    .cerrar {
-      position: absolute;
-      top: 20px;
-      right: 25px;
-      font-size: 40px;
-      cursor: pointer;
+    footer {
+      margin-top: 50px;
+      font-size: 14px;
+      color: gray;
     }
   </style>
 </head>
 
 <body>
 
-  <h1>Mis muebles y trabajos</h1>
+  <h1>Bienvenido</h1>
+  <p>Muebles y trabajos en madera</p>
 
-  <!-- GALERÍA -->
-  <div class="galeria">
-    <img src="mueble1.jpg" onclick="abrir(0)">
-    <img src="mueble2.jpg" onclick="abrir(1)">
-    <img src="mueble3.jpg" onclick="abrir(2)">
-    <img src="mueble4.jpg" onclick="abrir(3)">
-  </div>
+  <!-- BOTÓN WHATSAPP -->
+  <a class="boton" 
+     href="https://wa.me/1809XXXXXXX" 
+     target="_blank">
+    WhatsApp
+  </a>
 
-  <!-- VISOR -->
-  <div class="visor" id="visor">
-    <span class="cerrar" onclick="cerrar()">✕</span>
-    <img id="imagenGrande">
-  </div>
+  <br><br>
 
-  <script>
-    const fotos = [
-      "mueble1.jpg",
-      "mueble2.jpg",
-      "mueble3.jpg",
-      "mueble4.jpg"
-    ];
+  <!-- BOTÓN GALERÍA -->
+  <a href="muebles.html" class="boton-galeria">
+    Ver muebles y trabajos
+  </a>
 
-    let indice = 0;
-
-    function abrir(i) {
-      indice = i;
-      document.getElementById("imagenGrande").src = fotos[indice];
-      document.getElementById("visor").style.display = "flex";
-    }
-
-    function cerrar() {
-      document.getElementById("visor").style.display = "none";
-    }
-
-    // Deslizar en móvil
-    let inicioX = 0;
-
-    document.getElementById("visor").addEventListener("touchstart", e => {
-      inicioX = e.touches[0].clientX;
-    });
-
-    document.getElementById("visor").addEventListener("touchend", e => {
-      let finX = e.changedTouches[0].clientX;
-      if (finX < inicioX - 50) siguiente();
-      if (finX > inicioX + 50) anterior();
-    });
-
-    // Teclado PC
-    document.addEventListener("keydown", e => {
-      if (e.key === "ArrowRight") siguiente();
-      if (e.key === "ArrowLeft") anterior();
-      if (e.key === "Escape") cerrar();
-    });
-
-    function siguiente() {
-      indice = (indice + 1) % fotos.length;
-      document.getElementById("imagenGrande").src = fotos[indice];
-    }
-
-    function anterior() {
-      indice = (indice - 1 + fotos.length) % fotos.length;
-      document.getElementById("imagenGrande").src = fotos[indice];
-    }
-  </script>
+  <footer>
+    © 2026 Miguel Contreras
+  </footer>
 
 </body>
 </html>
