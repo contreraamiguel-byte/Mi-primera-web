@@ -26,17 +26,39 @@
   <div class="arrow right" onclick="nextImage()">❯</div>
 </div>
 
+
 <script>
-function openViewer(src) {
-  document.getElementById("visor").style.display = "flex";
-  document.getElementById("imgGrande").src = src;
-}
+  const images = [
+    "mueble1.jpg",
+    "mueble2.jpg",
+    "mueble3.jpg",
+    "mueble4.jpg"
+  ];
 
-function closeViewer() {
-  document.getElementById("visor").style.display = "none";
-}
+  let currentIndex = 0;
+
+  function openViewer(index) {
+    currentIndex = index;
+    document.getElementById("visor").style.display = "flex";
+    document.getElementById("imgGrande").src = images[currentIndex];
+  }
+
+  function closeViewer() {
+    document.getElementById("visor").style.display = "none";
+    document.getElementById("imgGrande").src = "";
+  }
+
+  function nextImage() {
+    currentIndex = (currentIndex + 1) % images.length;
+    document.getElementById("imgGrande").src = images[currentIndex];
+  }
+
+  function prevImage() {
+    currentIndex =
+      (currentIndex - 1 + images.length) % images.length;
+    document.getElementById("imgGrande").src = images[currentIndex];
+  }
 </script>
-
 
 </body>
 </html
