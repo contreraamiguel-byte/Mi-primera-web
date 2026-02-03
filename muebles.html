@@ -28,52 +28,75 @@
   gap: 15px;
   flex-wrap: wrap;
 }
-
-.galeria img {
-  width: 250px;
-  border-radius: 8px;
-}
-.slider {
-  display: flex;
-  overflow-x: auto;
-  scroll-snap-type: x mandatory;
-  gap: 15px;
-  padding: 10px;
-}
-
-.slider a {
-  flex: 0 0 auto;
-  scroll-snap-align: center;
+#viewer {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.9);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 999;
 }
 
-.slider img {
-  width: 250px;
-  border-radius: 10px;
+#viewer img {
+  max-width: 90%;
+  max-height: 90%;
 }
+
     </style>
 </head>
+<script>
+const images = [
+  "mueble1.jpg",
+  "mueble2.jpg",
+  "mueble3.jpg",
+  "mueble4.jpg"
+];
 
+let current = 0;
+
+function openViewer(index) {
+  current = index;
+  document.getElementById("viewer").style.display = "flex";
+  document.getElementById("viewerImg").src = images[current];
+}
+
+function closeViewer() {
+  document.getElementById("viewer").style.display = "none";
+}
+
+document.addEventListener("keydown", (e) => {
+  if (e.key === "ArrowRight") next();
+  if (e.key === "ArrowLeft") prev();
+});
+
+function next() {
+  current = (current + 1) % images.length;
+  document.getElementById("viewerImg").src = images[current];
+}
+
+function prev() {
+  current = (current - 1 + images.length) % images.length;
+  document.getElementById("viewerImg").src = images[current];
+}
+</script>
 <body>
 
     <h1>Muebles y trabajos</h1>
-<div class="galeria">
-  <a href="mueble1.jpg" target="_blank">
-    <img src="mueble1.jpg" alt="Mueble 1">
-  </a>
 
-  <a href="mueble2.jpg" target="_blank">
-    <img src="mueble2.jpg" alt="Mueble 2">
-  </a>
-
-  <a href="mueble3.jpg" target="_blank">
-    <img src="mueble3.jpg" alt="Mueble 3">
-  </a>
-
-  <a href="mueble4.jpg" target="_blank">
-    <img src="mueble4.jpg" alt="Mueble 4">
-  </a>
+<div class="slider">
+  <img src="mueble1.jpg" onclick="openViewer(0)">
+  <img src="mueble2.jpg" onclick="openViewer(1)">
+  <img src="mueble3.jpg" onclick="openViewer(2)">
+  <img src="mueble4.jpg" onclick="openViewer(3)">
 </div>
 
+<div id="viewer" onclick="closeViewer()">
+  <img id="viewerImg">
+</div>
     <br>
 
     <a href="index.html">⬅ Volver al inicio</a>
