@@ -19,32 +19,34 @@ h1{
   bacground: red;
 }
 
+/* VISOR PANTALLA COMPLETA */
 .visor {
   position: fixed;
   top: 0;
   left: 0;
   width: 100vw;
   height: 100vh;
-  background: rgba(0,0,0,0.95);
+  background: rgba(0,0,0,0.9);
   display: none;
-  justify-content: center;
   align-items: center;
+  justify-content: center;
   z-index: 99999;
 }
 
+/* IMAGEN GRANDE */
 #imagenGrande {
-  max-width: 100%;
-  max-height: 100%;
-  object-fit: contain;
+  max-width: 95vw;
+  max-height: 95vh;
+  border-radius: 10px;
 }
 
+/* BOTÓN CERRAR */
 .cerrar {
-  position: absolute;
-  top: 15px;
+  position: fixed;
+  top: 20px;
   right: 20px;
-  font-size: 32px;
+  font-size: 35px;
   color: white;
   cursor: pointer;
+  z-index: 100000;
 }
-
-
