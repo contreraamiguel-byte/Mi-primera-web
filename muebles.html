@@ -2,64 +2,134 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <title>Galería</title>
-  <link rel="stylesheet" href="style.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Muebles y Trabajos</title>
+
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #000;
+      color: white;
+      text-align: center;
+    }
+
+    h1 {
+      margin: 20px 0;
+    }
+
+    /* Galería miniaturas */
+    .galeria {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 10px;
+      padding: 15px;
+    }
+
+    .galeria img {
+      width: 100%;
+      border-radius: 10px;
+      cursor: pointer;
+    }
+
+    /* Visor pantalla completa */
+    .visor {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.95);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 1000;
+    }
+
+    .visor img {
+      max-width: 100%;
+      max-height: 100%;
+    }
+
+    /* Botón cerrar */
+    .cerrar {
+      position: absolute;
+      top: 20px;
+      right: 25px;
+      font-size: 40px;
+      cursor: pointer;
+    }
+  </style>
 </head>
 
 <body>
 
-<h1>Mi Galería</h1>
+  <h1>Mis muebles y trabajos</h1>
 
-<!-- VISOR -->
-<div id="visor">
-  <span id="cerrar" onclick="cerrar()">✕</span>
-  <span class="flecha izquierda" onclick="anterior()">❮</span>
-  <img id="imagenGrande">
-  <span class="flecha derecha" onclick="siguiente()">❯</span>
-</div>
+  <!-- GALERÍA -->
+  <div class="galeria">
+    <img src="mueble1.jpg" onclick="abrir(0)">
+    <img src="mueble2.jpg" onclick="abrir(1)">
+    <img src="mueble3.jpg" onclick="abrir(2)">
+    <img src="mueble4.jpg" onclick="abrir(3)">
+  </div>
 
-<!-- GALERÍA -->
-<div class="galeria">
-  <img src="img1.jpg" onclick="abrir(0)">
-  <img src="img2.jpg" onclick="abrir(1)">
-  <img src="img3.jpg" onclick="abrir(2)">
-  <img src="img4.jpg" onclick="abrir(3)">
-  <img src="img5.jpg" onclick="abrir(4)">
-  <img src="img6.jpg" onclick="abrir(5)">
-  <img src="img7.jpg" onclick="abrir(6)">
-  <img src="img8.jpg" onclick="abrir(7)">
-  <img src="img9.jpg" onclick="abrir(8)">
-</div>
+  <!-- VISOR -->
+  <div class="visor" id="visor">
+    <span class="cerrar" onclick="cerrar()">✕</span>
+    <img id="imagenGrande">
+  </div>
 
-<script>
-  const images = [
-    "mueble1.jpg",
-    "mueble2.jpg",
-    "mueble3.jpg",
-    "mueble4.jpg"
-  ];
+  <script>
+    const fotos = [
+      "mueble1.jpg",
+      "mueble2.jpg",
+      "mueble3.jpg",
+      "mueble4.jpg"
+    ];
 
-  let currentIndex = 0;
+    let indice = 0;
 
-  function openViewer(index) {
-    currentIndex = index;
-    document.getElementById("visor").style.display = "flex";
-    document.getElementById("imgGrande").src = images[currentIndex];
-  }
+    function abrir(i) {
+      indice = i;
+      document.getElementById("imagenGrande").src = fotos[indice];
+      document.getElementById("visor").style.display = "flex";
+    }
 
-  function closeViewer() {
-    document.getElementById("visor").style.display = "none";
-    document.getElementById("imgGrande").src = "";
-  }
+    function cerrar() {
+      document.getElementById("visor").style.display = "none";
+    }
 
-  function nextImage() {
-    currentIndex = (currentIndex + 1) % images.length;
-    document.getElementById("imgGrande").src = images[currentIndex];
-  }
+    // Deslizar en móvil
+    let inicioX = 0;
 
-  function prevImage() {
-    currentIndex =
-      (currentIndex - 1 + images.length) % images.length;
-    document.getElementById("imgGrande").src = images[currentIndex];
-  }
-</script>
+    document.getElementById("visor").addEventListener("touchstart", e => {
+      inicioX = e.touches[0].clientX;
+    });
+
+    document.getElementById("visor").addEventListener("touchend", e => {
+      let finX = e.changedTouches[0].clientX;
+      if (finX < inicioX - 50) siguiente();
+      if (finX > inicioX + 50) anterior();
+    });
+
+    // Teclado PC
+    document.addEventListener("keydown", e => {
+      if (e.key === "ArrowRight") siguiente();
+      if (e.key === "ArrowLeft") anterior();
+      if (e.key === "Escape") cerrar();
+    });
+
+    function siguiente() {
+      indice = (indice + 1) % fotos.length;
+      document.getElementById("imagenGrande").src = fotos[indice];
+    }
+
+    function anterior() {
+      indice = (indice - 1 + fotos.length) % fotos.length;
+      document.getElementById("imagenGrande").src = fotos[indice];
+    }
+  </script>
+
+</body>
+</html>
