@@ -34,17 +34,17 @@ h1{
 
 /* Imagen centrada y completa */
 #imagenGrande {
-  max-width: 100%;
-  max-height: 100%;
-  object-fit: center;
+  max-width: 95vw;
+  max-height: 95vh%;
+  object-fit: 10px;
 }
 
 /* Botón cerrar */
 .cerrar {
   position: fixed;
-  top: 15px;
+  top: 20px;
   right: 20px;
-  font-size: 38px;
+  font-size: 35px;
   color: white;
   cursor: pointer;
   z-index: 100000;
