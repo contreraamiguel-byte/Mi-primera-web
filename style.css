@@ -26,8 +26,8 @@ h1{
   left: 0;
   width: 100vw;
   height: 100vh;
-  background: rgba(0,0,0,0.95);
-  display: none;
+  background: rgba(0,0,0,0.9);
+  display: flex;
   align-items: center;
   justify-content: center;
   z-index: 99999;
