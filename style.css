@@ -19,67 +19,34 @@ h1{
   bacground: red;
 }
 
-
-/* VISOR */
-#visor{
-  display: none;
+/* ===== VISOR PANTALLA COMPLETA ===== */
+.visor {
   position: fixed;
   inset: 0;
-  background: rgba(0,0,0,0,9;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.95);
+  display: none;
   align-items: center;
   justify-content: center;
-  z-index: 9999;
-  display: flex;
+  z-index: 99999;
 }
 
-#imagenGrande{
-  max-width: 50%;
-  max-height: 50%;
+/* Imagen centrada y completa */
+#imagenGrande {
+  max-width: 100vw;
+  max-height: 100vh;
   object-fit: contain;
 }
 
-
-.item {
-  background: #1a1a1a;
-  padding: 14px;
-  border-radius: 18px;
-  box-shadow: 0 6px 15px rgba(0,0,0,0.5); /* ← separación visual */
-  transition: transform 0.2s ease;
-}
-
-.item:hover {
-  transform: scale(1.03);
-}
-
-.item img {
-  width: 100%;
-  border-radius: 10px;
-  display: block;
-}
-
-.item p {
-  margin-top: 16px;
-  font-size: 14px;
-  color: #ddd;
-}
-/* FLECHAS */
-.flecha{
-  position: absolute;
-  font-size: 40px;
+/* Botón cerrar */
+.cerrar {
+  position: fixed;
+  top: 15px;
+  right: 20px;
+  font-size: 38px;
   color: white;
   cursor: pointer;
-  user-select: none;
-}
-
-.izquierda{ left: 20px; }
-.derecha{ right: 20px; }
-
-/* CERRAR */
-#cerrar{
-  position: absolute;
-  top: 20px;
-  right: 25px;
-  font-size: 30px;
-  cursor: pointer;
+  z-index: 100000;
 }
 
