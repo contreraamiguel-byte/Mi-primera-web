@@ -13,9 +13,9 @@ h1{
 /* GALERÍA */
 .galeria{
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 34px;
-  padding: 28px;
+  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  gap: 25px;
+  padding: 20px;
 }
 
 
