@@ -12,7 +12,7 @@ h1{
 
 /* GALERÍA */
 .galeria{
-  display: grid;
+  display: blue;
   grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
   gap: 20px;
   padding: 15px;
