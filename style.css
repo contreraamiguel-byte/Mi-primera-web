@@ -14,8 +14,8 @@ h1{
 .galeria{
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 20px;
-  padding: 22px;
+  gap: 34px;
+  padding: 28px;
 }
 
 
@@ -43,8 +43,8 @@ h1{
 
 .item {
   background: #1a1a1a;
-  padding: 10px;
-  border-radius: 14px;
+  padding: 14px;
+  border-radius: 18px;
   box-shadow: 0 6px 15px rgba(0,0,0,0.5); /* ← separación visual */
   transition: transform 0.2s ease;
 }
