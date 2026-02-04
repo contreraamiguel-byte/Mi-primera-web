@@ -104,29 +104,29 @@
     <span class="cerrar" onclick="cerrar()">✕</span>
     <img id="imagenGrande">
   </div>
+<script>
+const fotos = [
+  "mueble1.jpg",
+  "mueble2.jpg",
+  "mueble3.jpg",
+  "mueble4.jpg",
+  "mueble5.jpg",
+  "mueble6.jpg"
+];
 
-  <script>
-    const fotos = [
-      "mueble1.jpg",
-      "mueble2.jpg",
-      "mueble3.jpg",
-      "mueble4.jpg",
-      "mueble5.jpg",
-      "mueble6.jpg"
-    ];
+function abrir(index) {
+  const visor = document.getElementById("visor");
+  const img = document.getElementById("imagenGrande");
 
-    let indice = 0;
+  img.src = fotos[index];
+  visor.style.display = "flex";
+}
 
-    function abrir(i) {
-      indice = i;
-      document.getElementById("imagenGrande").src = fotos[indice];
-      document.getElementById("visor").style.display = "flex";
-    }
-
-    function cerrar() {
-      document.getElementById("visor").style.display = "none";
-    }
-
+function cerrar() {
+  document.getElementById("visor").style.display = "none";
+}
+</script>
+  
     // Deslizar en móvil
     let inicioX = 0;
 
