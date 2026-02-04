@@ -1,109 +1,115 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Muebles y Trabajos</title>
+<meta charset="UTF-8">
+<title>Mis muebles y trabajos</title>
 
-  <style>
- body{
-    margin: 0;
-    font-family: Arial, sans-serif;
-    background: #111;
-    color: white;
-    text-align: center;
-  }
+<style>
+/* GENERAL */
+body{
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #111;
+  color: white;
+  text-align: center;
+}
 
-  h1{
-    margin: 20px 0;
-  }
+h1{
+  margin: 20px 0;
+}
 
-  .galeria{
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(90px, 1fr));
-    gap: 6px;
-    padding: 10px;
-  }
+/* GALERÍA */
+.galeria{
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  gap: 15px;
+  padding: 15px;
+}
 
-  .galeria img{
-    width: 100%;
-    height: 90px;
-    object-fit: cover;
-    border-radius: 8px;
-  }
+.item img{
+  width: 100%;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.item p{
+  margin-top: 5px;
+  font-size: 14px;
+}
 
 /* VISOR PANTALLA COMPLETA */
-.visor {
+.visor{
   position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  background: rgba(0,0,0,0.9);
+  inset: 0;
+  background: rgba(0,0,0,0.95);
   display: none;
   align-items: center;
   justify-content: center;
-  z-index: 99999;
+  z-index: 9999;
 }
 
 /* IMAGEN GRANDE */
-#imagenGrande {
+#imagenGrande{
   max-width: 95vw;
   max-height: 95vh;
+  object-fit: contain;
   border-radius: 10px;
 }
 
 /* BOTÓN CERRAR */
-.cerrar {
+.cerrar{
   position: fixed;
   top: 20px;
   right: 20px;
   font-size: 35px;
-  color: white;
   cursor: pointer;
-  z-index: 100000;
+  color: white;
 }
-  
+</style>
+</head>
+
 <body>
 
-  <h1>Mis muebles y trabajos</h1>
+<h1>Mis muebles y trabajos</h1>
 
-  <!-- GALERÍA -->
-  <div class="galeria">
-    
-<div class="item">
-  <img src="mueble1.jpg"onclick="abrir(0)">
-  <p>cocina modular</p>
-  
-</div>
-    <div class="item">
-  <img src="mueble2.jpg"onclick="abrir(1)">
-  <p>escritorio</p>
-    </div>    
-                 
-   <div class="item">
-  <img src="mueble3.jpg"onclick="abrir(2)">
-  <p>base decama</p>
-   </div>
-    <div class="item">
-  <img src="mueble4.jpg"onclick="abrir(3)">
-  <p>mesa domino</p>
-</div>  
-    <div class="item">
-  <img src="mueble5.jpg"onclick="abrir(4)">
-  <p>Credencia de pino</p>
-</div>
-    <div class="item">
-  <img src="mueble6.jpg"onclick="abrir(5)">
-  <p>closet</p>
-   
+<div class="galeria">
+  <div class="item">
+    <img src="mueble1.jpg" onclick="abrir(0)">
+    <p>Cocina modular</p>
   </div>
 
-  <!-- VISOR -->
-  <div class="visor" id="visor">
-    <span class="cerrar" onclick="cerrar()">✕</span>
-    <img id="imagenGrande">
+  <div class="item">
+    <img src="mueble2.jpg" onclick="abrir(1)">
+    <p>Escritorio</p>
   </div>
+
+  <div class="item">
+    <img src="mueble3.jpg" onclick="abrir(2)">
+    <p>Base de cama</p>
+  </div>
+
+  <div class="item">
+    <img src="mueble4.jpg" onclick="abrir(3)">
+    <p>Mesa dominó</p>
+  </div>
+
+  <div class="item">
+    <img src="mueble5.jpg" onclick="abrir(4)">
+    <p>Credencia de pino</p>
+  </div>
+
+  <div class="item">
+    <img src="mueble6.jpg" onclick="abrir(5)">
+    <p>Closet</p>
+  </div>
+</div>
+
+<!-- VISOR -->
+<div class="visor" id="visor">
+  <span class="cerrar" onclick="cerrar()">✕</span>
+  <img id="imagenGrande">
+</div>
+
 <script>
 const fotos = [
   "mueble1.jpg",
@@ -114,7 +120,7 @@ const fotos = [
   "mueble6.jpg"
 ];
 
-function abrir(index) {
+function abrir(index){
   const visor = document.getElementById("visor");
   const img = document.getElementById("imagenGrande");
 
@@ -122,41 +128,10 @@ function abrir(index) {
   visor.style.display = "flex";
 }
 
-function cerrar() {
+function cerrar(){
   document.getElementById("visor").style.display = "none";
 }
 </script>
-  
-    // Deslizar en móvil
-    let inicioX = 0;
-
-    document.getElementById("visor").addEventListener("touchstart", e => {
-      inicioX = e.touches[0].clientX;
-    });
-
-    document.getElementById("visor").addEventListener("touchend", e => {
-      let finX = e.changedTouches[0].clientX;
-      if (finX < inicioX - 50) siguiente();
-      if (finX > inicioX + 50) anterior();
-    });
-
-    // Teclado PC
-    document.addEventListener("keydown", e => {
-      if (e.key === "ArrowRight") siguiente();
-      if (e.key === "ArrowLeft") anterior();
-      if (e.key === "Escape") cerrar();
-    });
-
-    function siguiente() {
-      indice = (indice + 1) % fotos.length;
-      document.getElementById("imagenGrande").src = fotos[indice];
-    }
-
-    function anterior() {
-      indice = (indice - 1 + fotos.length) % fotos.length;
-      document.getElementById("imagenGrande").src = fotos[indice];
-    }
-  </script>
 
 </body>
 </html>
