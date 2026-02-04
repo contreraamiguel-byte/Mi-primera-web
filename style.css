@@ -13,8 +13,8 @@ h1{
 /* GALERÍA */
 .galeria{
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 10px;
+  grid-template-columns: repeat(auto-fill, minmax(120px,1fr));
+  gap: 8px;
   padding: 15px;
 }
 
@@ -23,7 +23,7 @@ h1{
   height: 120px;
   object-fit: cover;
   cursor: pointer;
-  border-radius: 6px;
+  border-radius: 10px;
 }
 
 /* VISOR */
