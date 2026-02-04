@@ -34,11 +34,16 @@ h1{
 }
 
 /* IMAGEN GRANDE */
+#imagenGrande/* IMAGEN GRANDE */
 #imagenGrande {
-  max-width: 95vw;
-  max-height: 95vh;
+  max-width: 100vw;
+  max-height: 100vh;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  display: block;
   border-radius: 10px;
-}
+} 
 
 /* BOTÓN CERRAR */
 .cerrar {
