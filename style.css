@@ -1,7 +1,7 @@
 body{
   margin: 0;
   font-family: Arial, sans-serif;
-  background: purple !importantt;
+  background: purple !important;
   color: white;
   text-align: center;
 }
@@ -12,10 +12,11 @@ h1{
 
 /* GALERÍA */
 .galeria{
-  display: red;
+  display: grid;
   grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
   gap: 20px;
   padding: 15px;
+  bacground: red;
 }
 
 
@@ -24,7 +25,7 @@ h1{
   display: none;
   position: fixed;
   inset: 0;
-  background: blue;
+  background: red;
   align-items: center;
   justify-content: center;
   z-index: 1000;
