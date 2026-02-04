@@ -32,37 +32,40 @@
     border-radius: 8px;
   }
 
-    /* Visor pantalla completa */
-    .visor {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100vw;
-      height: 100uh;
-      background: rgba(0,0,0,0.95);
-      display: none;
-      align-items: center;
-      justify-content: center;
-      z-index: 9999;
-    }
-<!-- VISOR PANTALLA COMPLETA -->
-<div id="visor" class="visor" onclick="cerrarVisor()">
-  <span class="cerrar" onclick="cerrarVisor(event)">×</span>
-  <img id="imagenGrande" src="" alt="imagen grande" onclick="event.stopPropagation()">
-</div>
-   
-
-    /* Botón cerrar */
-    .cerrar {
-      position: absolute;
-      top: 20px;
-      right: 25px;
-      font-size: 40px;
-      cursor: pointer;
-    }
+ 
   </style>
 </head>
+/* VISOR PANTALLA COMPLETA */
+.visor {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0,0,0,0.9);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 99999;
+}
 
+/* IMAGEN GRANDE */
+#imagenGrande {
+  max-width: 95vw;
+  max-height: 95vh;
+  border-radius: 10px;
+}
+
+/* BOTÓN CERRAR */
+.cerrar {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  font-size: 35px;
+  color: white;
+  cursor: pointer;
+  z-index: 100000;
+}
 <body>
 
   <h1>Mis muebles y trabajos</h1>
