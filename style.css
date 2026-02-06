@@ -1,8 +1,10 @@
-/* ====== ESTILO GENERAL ====== */
+/* =========================
+   CONFIGURACIÓN GENERAL
+========================= */
 body{
   margin: 0;
   font-family: Arial, sans-serif;
-  background: blue;
+  background: #111;
   color: white;
   text-align: center;
 }
@@ -11,7 +13,9 @@ h1{
   margin: 20px 0;
 }
 
-/* ====== GALERÍA ====== */
+/* =========================
+   GALERÍA
+========================= */
 .galeria{
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
@@ -20,49 +24,64 @@ h1{
 }
 
 .item{
-  text-align: center;
+  background: #1a1a1a;
+  padding: 8px;
+  border-radius: 12px;
 }
 
 .item img{
   width: 100%;
-  height: 160px;
+  height: 120px;
   object-fit: cover;
-  border-radius: 12px;
+  border-radius: 10px;
   cursor: pointer;
 }
 
 .item p{
-  margin-top: 6px;
-  font-size: 13px;
+  margin: 8px 0 0;
+  font-size: 14px;
+  color: #ddd;
 }
 
-/* ====== VISOR PANTALLA COMPLETA ====== */
+/* =========================
+   VISOR PANTALLA COMPLETA
+========================= */
 .visor{
-  display: none;
   position: fixed;
   top: 0;
   left: 0;
   width: 100vw;
   height: 100vh;
   background: rgba(0,0,0,0.95);
-  justify-content: center;
+  display: none;
   align-items: center;
-  z-index: 999;
+  justify-content: center;
+  z-index: 9999;
 }
 
+/* =========================
+   IMAGEN GRANDE
+   AQUÍ SE CONTROLA EL TAMAÑO
+========================= */
 #imagenGrande{
-  max-width: 95%;
-  max-height: 90%;
+  max-width: 95vw;
+  max-height: 95vh;
+  width: auto;
+  height: auto;
   object-fit: contain;
-  border-radius: 10px;
+  border-radius: 12px;
 }
 
-/* ====== BOTÓN CERRAR ====== */
+/* =========================
+   BOTÓN CERRAR
+========================= */
 .cerrar{
   position: fixed;
   top: 20px;
   right: 20px;
   font-size: 35px;
-  cursor: pointer;
   color: white;
+  cursor: pointer;
+  z-index: 10000;
 }
+ 
