@@ -47,5 +47,9 @@ h1{
   font-weight: bold;
   text-align: center;
 }
-
+@media (max-width: 200px){
+  .galeria{
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
 
