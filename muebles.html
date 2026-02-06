@@ -23,6 +23,7 @@
       margin: 20px 0;
     }
 
+    /* ===== GALERÍA ===== */
     .galeria{
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
@@ -30,22 +31,58 @@
       padding: 15px;
     }
 
-    .item{
-      text-align: center;
-    }
-
     .item img{
       width: 100%;
-      height: 140px;        /* TAMAÑO FIJO */
-      object-fit: cover;    /* NO SE DEFORMA */
+      height: 140px;
+      object-fit: cover;
       border-radius: 8px;
-      display: block;
+      cursor: pointer;
     }
 
     .item p{
       margin-top: 6px;
       font-size: 14px;
     }
+
+    /* ===== VISOR GRANDE ===== */
+    .visor{
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.9);
+      justify-content: center;
+      align-items: center;
+      z-index: 999;
+    }
+
+    .visor img{
+      max-width: 90%;
+      max-height: 80%;
+      border-radius: 10px;
+    }
+
+    .cerrar{
+      position: absolute;
+      top: 20px;
+      right: 25px;
+      font-size: 30px;
+      cursor: pointer;
+    }
+
+    .flecha{
+      position: absolute;
+      top: 50%;
+      font-size: 40px;
+      cursor: pointer;
+      user-select: none;
+      padding: 10px;
+    }
+
+    .izq{ left: 20px; }
+    .der{ right: 20px; }
   </style>
 </head>
 
@@ -54,58 +91,58 @@
   <h1>Mis muebles y trabajos</h1>
 
   <div class="galeria">
-
-    <div class="item">
-      <img src="mueble1.jpg" alt="Cocina modular">
-      <p>Cocina modular</p>
-    </div>
-
-    <div class="item">
-      <img src="mueble2.jpg" alt="Escritorio">
-      <p>Escritorio</p>
-    </div>
-
-    <div class="item">
-      <img src="mueble3.jpg" alt="Base de cama">
-      <p>Base de cama</p>
-    </div>
-
-    <div class="item">
-      <img src="mueble4.jpg" alt="Mesa dominó">
-      <p>Mesa dominó</p>
-    </div>
-
-    <div class="item">
-      <img src="mueble5.jpg" alt="Credencia de pino">
-      <p>Credencia de pino</p>
-    </div>
-
-    <div class="item">
-      <img src="mueble6.jpg" alt="Closet">
-      <p>Closet</p>
-    </div>
-
-    <div class="item">
-      <img src="mueble7.jpg" alt="Cocina modular">
-      <p>Cocina modular</p>
-    </div>
-
-    <div class="item">
-      <img src="mueble8.jpg" alt="Closet">
-      <p>Closet</p>
-    </div>
-
-    <div class="item">
-      <img src="mueble9.jpg" alt="Mesita">
-      <p>Mesita</p>
-    </div>
-
-    <div class="item">
-      <img src="mueble11.jpg" alt="Organizador">
-      <p>Organizador</p>
-    </div>
-
+    <div class="item"><img src="mueble1.jpg"><p>Cocina modular</p></div>
+    <div class="item"><img src="mueble2.jpg"><p>Escritorio</p></div>
+    <div class="item"><img src="mueble3.jpg"><p>Base de cama</p></div>
+    <div class="item"><img src="mueble4.jpg"><p>Mesa dominó</p></div>
+    <div class="item"><img src="mueble5.jpg"><p>Credencia de pino</p></div>
+    <div class="item"><img src="mueble6.jpg"><p>Closet</p></div>
+    <div class="item"><img src="mueble7.jpg"><p>Cocina modular</p></div>
+    <div class="item"><img src="mueble8.jpg"><p>Closet</p></div>
+    <div class="item"><img src="mueble9.jpg"><p>Mesita</p></div>
+    <div class="item"><img src="mueble11.jpg"><p>Organizador</p></div>
   </div>
+
+  <!-- VISOR -->
+  <div class="visor" id="visor">
+    <span class="cerrar" onclick="cerrar()">✖</span>
+    <span class="flecha izq" onclick="anterior()">❮</span>
+    <img id="imagenGrande">
+    <span class="flecha der" onclick="siguiente()">❯</span>
+  </div>
+
+  <script>
+    const imagenes = document.querySelectorAll('.item img');
+    const visor = document.getElementById('visor');
+    const imagenGrande = document.getElementById('imagenGrande');
+    let indice = 0;
+
+    imagenes.forEach((img, i) => {
+      img.addEventListener('click', () => {
+        indice = i;
+        abrir();
+      });
+    });
+
+    function abrir(){
+      imagenGrande.src = imagenes[indice].src;
+      visor.style.display = 'flex';
+    }
+
+    function cerrar(){
+      visor.style.display = 'none';
+    }
+
+    function siguiente(){
+      indice = (indice + 1) % imagenes.length;
+      abrir();
+    }
+
+    function anterior(){
+      indice = (indice - 1 + imagenes.length) % imagenes.length;
+      abrir();
+    }
+  </script>
 
 </body>
 </html>
