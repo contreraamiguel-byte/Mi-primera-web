@@ -48,9 +48,4 @@ h1{
   text-align: center;
 }
 
-/* RESPONSIVE CELULAR */
-@media (max-width: 100px){
-  .galeria{
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
+
