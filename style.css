@@ -17,6 +17,8 @@ h1{
   gap: 15px;
   padding: 15px;
 }
+.item{
+    text-align: ceenter;
 
 .galeria img{
   width: 100%;
