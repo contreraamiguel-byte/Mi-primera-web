@@ -21,8 +21,8 @@ h1{
 .galeria{
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 5px;
-  padding: 5px;
+  gap: 12px;
+  padding: 15px;
 }
 
 /* CADA ITEM (IMAGEN + NOMBRE) */
@@ -37,7 +37,7 @@ h1{
   width: 100%;
   border-radius: 15px;
   object-fit: cover;
-  max-height: 100px;
+  max-height: 150px;
 }
 
 /* NOMBRE DEBAJO */
