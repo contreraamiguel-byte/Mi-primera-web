@@ -3,71 +3,10 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Ebanisteria Hermanos Contreras</title>
+  <title>Ebanistería Hermanos Contreras</title>
+
+  <!-- CONEXIÓN CON CSS -->
   <link rel="stylesheet" href="style.css">
-  <style>
-    body{
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background: #111;
-      color: white;
-      text-align: center;
-    }
-    </style>
-
-    h1{
-      margin: 20px 0;
-    }
-
-    .galeria{
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
-      gap: 15px;
-      padding: 15px;
-    }
-
-    .item img{
-      width: 100%;
-      height: 120px;
-      object-fit: cover;
-      border-radius: 12px;
-      cursor: pointer;
-    }
-
-    .item p{
-      margin-top: 6px;
-      font-size: 13px;
-    }
-
-    .visor{
-      display: none;
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100vw;
-      height: 100vh;
-      background: rgba(0,0,0,0.95);
-      justify-content: center;
-      align-items: center;
-      z-index: 999;
-    }
-
-    #imagenGrande{
-      max-width: 95%;
-      max-height: 90%;
-      object-fit: contain;
-      border-radius: 10px;
-    }
-
-    .cerrar{
-      position: fixed;
-      top: 20px;
-      right: 20px;
-      font-size: 35px;
-      cursor: pointer;
-      color: white;
-    }
-  </style>
 </head>
 
 <body>
@@ -75,81 +14,64 @@
   <h1>Mis muebles y trabajos</h1>
 
   <div class="galeria">
-    <div class="item">
-      <img src="mueble1.jpg" onclick="abrir(0)">
-      <p>Cocina modular</p>
-    </div>
-
-    <div class="item">
-      <img src="mueble2.jpg" onclick="abrir(1)">
-      <p>Escritorio</p>
-    </div>
-
-    <div class="item">
-      <img src="mueble3.jpg" onclick="abrir(2)">
-      <p>Base de cama</p>
-    </div>
-
-    <div class="item">
-      <img src="mueble4.jpg" onclick="abrir(3)">
-      <p>Mesa dominó</p>
-    </div>
-
-    <div class="item">
-      <img src="mueble5.jpg" onclick="abrir(4)">
-      <p>Credencia de pino</p>
-    </div>
-
-    <div class="item">
-      <img src="mueble6.jpg" onclick="abrir(5)">
-      <p>Closet</p>
-      
-    </div>
-      <div class="item">
-      <img src="mueble11.jpg" onclick="abrir(6)">
-      <p>organisador o archivero</p>
-    </div>
-    
-     <div class="item">
-      <img src="mueble7.jpg" onclick="abrir(7)">
-      <p>cocina modular</p>
-        </div>
-    
-        <div class="item">
-      <img src="mueble9.jpg" onclick="abrir(8)">
-      <p>mesita</p>
-    
-    </div>
+    <img src="mueble1.jpg" alt="Cocina modular">
+    <img src="mueble2.jpg" alt="Escritorio">
+    <img src="mueble3.jpg" alt="Base de cama">
+    <img src="mueble4.jpg" alt="Mesa dominó">
+    <img src="mueble5.jpg" alt="Credencia de pino">
+    <img src="mueble6.jpg" alt="Closet">
   </div>
 
-  <!-- VISOR -->
+  <!-- VISOR GRANDE -->
   <div class="visor" id="visor">
     <span class="cerrar" onclick="cerrar()">✕</span>
-    <img id="imagenGrande">
+    <img id="visorImg">
   </div>
 
-  <script>
-    const fotos = [
-      "mueble1.jpg",
-      "mueble2.jpg",
-      "mueble3.jpg",
-      "mueble4.jpg",
-      "mueble5.jpg",
-      "mueble6.jpg",
-      "mueble11.jpg",
-      "mueble7.jpg",
-      "mueble9.jpg"
-    ];
+<script>
+  const imagenes = document.querySelectorAll(".galeria img");
+  const visor = document.getElementById("visor");
+  const visorImg = document.getElementById("visorImg");
+  let actual = 0;
 
-    function abrir(index){
-      document.getElementById("imagenGrande").src = fotos[index];
-      document.getElementById("visor").style.display = "flex";
-    }
+  imagenes.forEach((img, index) => {
+    img.addEventListener("click", () => {
+      actual = index;
+      abrir();
+    });
+  });
 
-    function cerrar(){
-      document.getElementById("visor").style.display = "none";
-    }
-  </script>
+  function abrir(){
+    visor.style.display = "flex";
+    visorImg.src = imagenes[actual].src;
+  }
+
+  function cerrar(){
+    visor.style.display = "none";
+  }
+
+  let inicioX = 0;
+
+  visorImg.addEventListener("touchstart", e => {
+    inicioX = e.touches[0].clientX;
+  });
+
+  visorImg.addEventListener("touchend", e => {
+    let finX = e.changedTouches[0].clientX;
+    if(finX < inicioX - 50) siguiente();
+    if(finX > inicioX + 50) anterior();
+  });
+
+  function siguiente(){
+    actual = (actual + 1) % imagenes.length;
+    abrir();
+  }
+
+  function anterior(){
+    actual = (actual - 1 + imagenes.length) % imagenes.length;
+    abrir();
+  }
+</script>
 
 </body>
 </html>
