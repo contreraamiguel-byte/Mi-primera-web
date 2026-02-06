@@ -14,15 +14,15 @@ body{
 
 /* TITULO */
 h1{
-  margin: 10px 0;
+  margin: 20px 0;
 }
 
 /* GALERIA */
 .galeria{
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 10px;
-  padding: 10px;
+  gap: 5px;
+  padding: 5px;
 }
 
 /* CADA ITEM (IMAGEN + NOMBRE) */
