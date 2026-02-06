@@ -48,7 +48,7 @@ h1{
 }
 
 /* RESPONSIVE CELULAR */
-@media (max-width: 600px){
+@media (max-width: 100px){
   .galeria{
     grid-template-columns: repeat(2, 1fr);
   }
