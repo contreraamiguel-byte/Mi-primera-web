@@ -27,7 +27,7 @@
     .galeria{
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(110px, 1fr));
-      gap: 10px;
+      gap: 12px;
       padding: 10px;
     }
 
@@ -83,6 +83,15 @@
 
     .izq{ left: 20px; }
     .der{ right: 20px; }
+    <style>
+/* efecto al tocar la imagen */
+.item img{
+  transition: transform 0.2s ease;
+}
+
+.item img:active{
+  transform: scale(0.97);
+}
   </style>
 </head>
 
